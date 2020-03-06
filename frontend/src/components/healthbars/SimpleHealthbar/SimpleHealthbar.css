@@ -1,5 +1,6 @@
 .healthbar {
-    background-color: green;
+    background-image: linear-gradient(rgb(0, 204, 0) 70%, #05b305 50%);
+    background-image: -webkit-linear-gradient(rgb(0, 204, 0) 70%, #05b305 50%);
     border-bottom-right-radius: 2em;
     border-top-right-radius: 2em;
     border-bottom-left-radius: 2em;
