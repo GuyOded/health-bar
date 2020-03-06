@@ -1,7 +1,8 @@
 .healthbar-container {
-    font-family: "04b_30";
-    text-shadow: black;
     padding: 4em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .main-container {
@@ -9,6 +10,16 @@
     justify-content: center;
 }
 
-#title {
-    font-size: 4rem;
+#switchTheme {
+    top: 0;
+    right: 0;
+    position: absolute;
+    margin-top: 1em;
+    margin-right: 1em;
+}
+
+.title {
+    font-family: "04b_30";
+    text-shadow: black;
+    font-size: 7rem;
 }

@@ -1,0 +1,10 @@
+.healthbar {
+    background-color: green;
+    border-bottom-right-radius: 2em;
+    border-top-right-radius: 2em;
+    border-bottom-left-radius: 2em;
+    border-top-left-radius: 2em;
+    padding: 0.2em;
+    height: 1em;
+    width: 28em;
+}
