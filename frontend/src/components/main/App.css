@@ -1,0 +1,14 @@
+.healthbar-container {
+    font-family: "04b_30";
+    text-shadow: black;
+    padding: 4em;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+}
+
+#title {
+    font-size: 4rem;
+}
