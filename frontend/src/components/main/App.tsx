@@ -11,7 +11,7 @@ type State = {
 class App extends React.Component<{}, State> {
     constructor(props: {}) {
         super(props)
-        this.state = {isDark: true}
+        this.state = { isDark: true }
         this.setDarkMode()
     }
 
