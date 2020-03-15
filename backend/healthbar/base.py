@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 '''
-Simple health bar implementation.
+Base health bar class.
 
-Implements a base for an animated health bar logic.
+Implements a base for a health bar logic.
 '''
-import sys
 import threading
 
 from abc import ABCMeta, abstractmethod
@@ -117,41 +116,3 @@ class HealthBarBase(metaclass=ABCMeta):
         while self.__run:
             self.draw()
             sleep(self.interval)
-
-class HideCursor:
-    def __enter__(self):
-        print('\033[?25l', end='')
-        sys.stdout.flush()
-
-    def __exit__(self, *info):
-        print('\033[?25h', end='')
-        sys.stdout.flush()
-
-
-class ConsoleHealthBar(HealthBarBase):
-    '''
-    A console-based health bar.
-    '''
-    def __init__(self, *args, fill='#', empty=' ', corner='+', vertical='|', horizontal='-',
-                 top_left=None, top=None, top_right=None,
-                 left=None, right=None,
-                 bottom_left=None, bottom=None, bottom_right=None, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.__tl = top_left or corner
-        self.__t = top or horizontal
-        self.__tr = top_right or corner
-        self.__l = left or vertical
-        self.__fill = fill
-        self.__empty = empty
-        self.__r = right or vertical
-        self.__bl = bottom_left or corner
-        self.__b = bottom or horizontal
-        self.__br = bottom_right or corner
-
-    def draw(self):
-        fill_amount = round(self.length * self.value / self.max_value)
-        with HideCursor():
-            print('\033[H', end='')
-            print(f'{self.__tl}{self.__t * self.length}{self.__tr}')
-            print(f'{self.__l}{self.__fill * fill_amount}{self.__empty * (self.length - fill_amount)}{self.__r}')
-            print(f'{self.__bl}{self.__b * self.length}{self.__br}')

@@ -6,7 +6,8 @@ import threading
 from functools import wraps
 from typing import Optional
 
-from healthbar.base import HealthBarBase, ConsoleHealthBar
+from healthbar.base import HealthBarBase
+from healthbar.console import ConsoleHealthBar
 
 def delayed(cls):
     '''

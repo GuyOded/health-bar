@@ -9,7 +9,7 @@ from itertools import chain
 
 from functools import wraps
 
-from healthbar.base import *
+from healthbar import *
 
 def describe(bar: HealthBarBase):
     '''
