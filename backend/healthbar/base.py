@@ -4,6 +4,7 @@ Simple health bar implementation.
 
 Implements a base for an animated health bar logic.
 '''
+import sys
 import threading
 
 from abc import ABCMeta, abstractmethod
@@ -117,6 +118,15 @@ class HealthBarBase(metaclass=ABCMeta):
             self.draw()
             sleep(self.interval)
 
+class HideCursor:
+    def __enter__(self):
+        print('\033[?25l', end='')
+        sys.stdout.flush()
+
+    def __exit__(self, *info):
+        print('\033[?25h', end='')
+        sys.stdout.flush()
+
 
 class ConsoleHealthBar(HealthBarBase):
     '''
@@ -140,7 +150,8 @@ class ConsoleHealthBar(HealthBarBase):
 
     def draw(self):
         fill_amount = round(self.length * self.value / self.max_value)
-        print('\033[2J\033[H', end='')
-        print(f'{self.__tl}{self.__t * self.length}{self.__tr}')
-        print(f'{self.__l}{self.__fill * fill_amount}{self.__empty * (self.length - fill_amount)}{self.__r}')
-        print(f'{self.__bl}{self.__b * self.length}{self.__br}')
+        with HideCursor():
+            print('\033[H', end='')
+            print(f'{self.__tl}{self.__t * self.length}{self.__tr}')
+            print(f'{self.__l}{self.__fill * fill_amount}{self.__empty * (self.length - fill_amount)}{self.__r}')
+            print(f'{self.__bl}{self.__b * self.length}{self.__br}')
