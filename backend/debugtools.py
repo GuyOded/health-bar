@@ -67,9 +67,9 @@ def verbose(print_when_set: bool = False):
         return VerboseHealthBar
     return _verbose
 
-def clear_occationally(cls):
+def clear_occasionally(cls):
     '''
-    A decorator to make the health bar clear the screen occationally.
+    A decorator to make the health bar clear the screen occasionally.
     '''
     from functools import wraps
     assert issubclass(cls, HealthBarBase)
@@ -100,7 +100,7 @@ def go(size=100):
     '''
     Quickly test a health bar class by setting the health (slowly) from 0 to max and back to 0.
 
-    @note better to use ``make()`` and ``test()``. This was made to debug the base console healthbar.
+    @note better to use ``make()`` and ``test()``. This was made to debug the base console health bar.
     '''
     tsize = os.get_terminal_size()
     r = tsize.lines // 2 - 1
@@ -133,7 +133,7 @@ def make(size=100, *, hbtype=ConsoleHealthBar, debug=False, **kwargs) -> HealthB
 
 def make_console(size: int = None, *, hbtype=ConsoleHealthBar, clear=False, **kwargs) -> HealthBarBase:
     '''
-    Create a pretty consolde health bar for testing with ``test()``. (or manually)
+    Create a pretty console health bar for testing with ``test()``. (or manually)
 
     @param size     A positive integer (or ``None``) for the size of the health bar.
     @param hbtype   The type to use for the health bar.
@@ -158,7 +158,7 @@ def make_console(size: int = None, *, hbtype=ConsoleHealthBar, clear=False, **kw
         clr = '\033[2J'
     else:
         clr = ''
-        hbtype = clear_occationally(hbtype)
+        hbtype = clear_occasionally(hbtype)
 
     return make(size, hbtype=hbtype, fill='\033[1;31m\u2588', empty='\033[1;30m\u2588', horizontal='', corner='', left=f'{clr}\033[H\033[{r}B\033[{c}C', right='\033[0m', interval=0.01, **kwargs)
     # return make(size, fill='\033[1;31m\u2588\033[0m', empty='\033[1;30m\u2588\033[0m', vertical='\u2502', horizontal='\u2500', top_left='\u250c', top_right='\u2510', bottom_left='\u2514', bottom_right='\u2518')

@@ -12,7 +12,7 @@ from typing import Union
 
 class HealthBarBase(metaclass=ABCMeta):
     '''
-    Base class for health bar implementaions.
+    Base class for health bar implementations.
     '''
     def __init__(self, length: int, max_value: Union[int, float] = 100, *, start_at: Union[int, float] = None,
                  interval: float = 0.1):
@@ -58,7 +58,7 @@ class HealthBarBase(metaclass=ABCMeta):
     def set_value(self, value):
         '''
         Sets the value for the current health bar.
-        This is the prefered method as it can be overridden by implementing classes.
+        This is the preferred method as it can be overridden by implementing classes.
         Uses the self.value property.
         '''
         self.value = value
