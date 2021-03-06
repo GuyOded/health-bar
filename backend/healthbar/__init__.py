@@ -16,3 +16,4 @@ A cool health bar.
 from healthbar.base import HealthBarBase
 from healthbar.console import ConsoleHealthBar
 from healthbar.delayed import delayed, DelayedConsoleBar
+from healthbar.ws28 import WS28HealthBar
